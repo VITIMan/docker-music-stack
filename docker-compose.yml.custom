@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+  icecast:
+    build:
+      context: icecast/
+    image: alpine-icecast:custom
+    ports:
+      - "8000:8000"
+    networks:
+      - music_stack
+
+  # Add your host volumen in path/to/... or add your own volume below
+  mpd:
+    build:
+      context: mpd/
+    image: alpine-mpd:custom
+    ports:
+      - "6600:6600"
+    depends_on:
+      - icecast
+    networks:
+      - music_stack
+    volumes:
+      - /path/to/mpd_music:/var/lib/mpd/music
+      - /path/to/mpd_playlists:/var/lib/mpd/playlists
+      - /path/to/mpd_database:/var/lib/mpd/database
+
+  sima:
+    build:
+      context: sima/
+    image: alpine-sima:custom
+    depends_on:
+      - mpd
+    networks:
+      - music_stack
+
+  ympd:
+    build:
+      context: ympd/
+    image: alpine-ympd:custom
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mpd
+    networks:
+      - music_stack
+
+networks:
+  music_stack:
+    driver: bridge
+
+# If you use your own volumes instead host volumes, uncomment this section
+# volumes:
+#   mpd_music:
+#     external: true
+#   mpd_playlists:
+#     external: true
+#   mpd_database:
+#     external: true
+
+
