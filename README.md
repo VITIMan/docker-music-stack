@@ -39,7 +39,7 @@ Clone this repo. **Edit docker-compose.yml** and add your host volumes for your 
 
 2. Run Icecast
 
-    docker run -p 8000:8000 --net music_stack --name=icecast -d alpine-icecast:latest
+    docker run -p 8000:8000 --net music_stack --name=icecast -d vitiman/alpine-icecast:latest
 
 3. Run MPD
 
@@ -49,15 +49,15 @@ Use [host volumes](https://docs.docker.com/engine/userguide/containers/dockervol
         -v your_music_volume:/var/lib/mpd/music \
         -v your_playlists_volume:/var/lib/mpd/playlists \
         -v your_database_volume:/var/lib/mpd/database \
-        --name mpd alpine-mpd:latest
+        --name mpd vitiman/alpine-mpd:latest
 
 4. (Optional) Run sima
 
-    docker run --net music_stack --name=sima -d alpine-sima:latest
+    docker run --net music_stack --name=sima -d vitiman/alpine-sima:latest
 
 5. (Optional) Run ympd
 
-    docker run -p 8080:8080 --net music_stack --name=ympd -d alpine-ympd:latest
+    docker run -p 8080:8080 --net music_stack --name=ympd -d vitiman/alpine-ympd:latest
 
 ## Passwords, users and credentials
 
@@ -79,6 +79,13 @@ volumes!
 
     docker-compose -f docker-compose.yml.custom build
     docker-compose -f docker-compose.yml.custom up -d
+
+## DockerHub repository
+
+- [alpine-mpd](https://hub.docker.com/r/vitiman/alpine-mpd/) 
+- [alpine-icecast](https://hub.docker.com/r/vitiman/alpine-icecast/) 
+- [alpine-sima](https://hub.docker.com/r/vitiman/alpine-sima/) 
+- [alpine-ympd](https://hub.docker.com/r/vitiman/alpine-ympd/).
 
 ## TODOs
 

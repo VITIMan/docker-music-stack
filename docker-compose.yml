@@ -10,7 +10,7 @@ services:
 
   # Add your host volumen in path/to/... or add your own volume below
   mpd:
-    image: alpine-mpd:latest
+    image: vitiman/alpine-mpd:latest
     ports:
       - "6600:6600"
     depends_on:
