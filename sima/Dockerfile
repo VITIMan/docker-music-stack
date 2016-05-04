@@ -1,7 +1,6 @@
 FROM alpine:3.3
 MAINTAINER @VITIMan https://github.com/VITIMan 
 
-# docker run --net music_stack --name=sima -d alpine-sima:dev
 ENV SIMA_VERSION 0.14.1
 ENV PYTHON_VERSION 3.5.1-r0
 

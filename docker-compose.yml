@@ -2,7 +2,7 @@ version: '2'
 
 services:
   icecast:
-    image: vitiman/alpine-icecast:1.0
+    image: vitiman/alpine-icecast:latest
     ports:
       - "8000:8000"
     networks:
@@ -10,7 +10,7 @@ services:
 
   # Add your host volumen in path/to/... or add your own volume below
   mpd:
-    image: alpine-mpd:1.0
+    image: alpine-mpd:latest
     ports:
       - "6600:6600"
     depends_on:
@@ -23,14 +23,14 @@ services:
       - /path/to/mpd_database:/var/lib/mpd/database
 
   sima:
-    image: vitiman/alpine-sima:1.0
+    image: vitiman/alpine-sima:latest
     depends_on:
       - mpd
     networks:
       - music_stack
 
   ympd:
-    image: vitiman/alpine-ympd:1.0
+    image: vitiman/alpine-ympd:latest
     ports:
       - "8080:8080"
     depends_on:

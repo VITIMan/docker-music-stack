@@ -4,7 +4,8 @@ This a ready, set and deploy music stack built under docker.
 
 ## Applications used in the stack
 
-- [mpd](http://mpd.wikia.com/wiki/Music_Player_Daemon_Wiki)
+- [mpd](http://mpd.wikia.com/wiki/Music_Player_Daemon_Wiki): My favorite 
+music server application
 - [icecast](http://icecast.org/): To stream the audio over the world
 - [sima](http://kaliko.me/code/mpd-sima/): Autoqueue client. Never stop listen!
 - [ympd](https://www.ympd.org/): A minimal Web GUI.
@@ -20,9 +21,9 @@ launching the containers one-by-one, your choice.
 
 The default access to applications are:
 
-- mpd: http://localhost:6600
-- icecast streaming: http://localhost:8000/mpd
-- ympd gui: http://localhost:8080
+- mpd: `http://localhost:6600` or `http://docker_machine_ip:6600`
+- icecast streaming: `http://localhost:8000/mpd` or `http://docker_machine_ip:8000/mpd`
+- ympd gui: `http://localhost:8080` or `http://docker_machine_ip:8080`
 
 ### Docker Compose
 
@@ -38,7 +39,7 @@ Clone this repo. **Edit docker-compose.yml** and add your host volumes for your 
 
 2. Run Icecast
 
-    docker run -p 8000:8000 --net music_stack --name=icecast -d alpine-icecast:dev
+    docker run -p 8000:8000 --net music_stack --name=icecast -d alpine-icecast:latest
 
 3. Run MPD
 
@@ -48,15 +49,15 @@ Use [host volumes](https://docs.docker.com/engine/userguide/containers/dockervol
         -v your_music_volume:/var/lib/mpd/music \
         -v your_playlists_volume:/var/lib/mpd/playlists \
         -v your_database_volume:/var/lib/mpd/database \
-        --name alpine-mpd alpine-mpd:dev
+        --name mpd alpine-mpd:latest
 
 4. (Optional) Run sima
 
-    docker run --net music_stack --name=sima -d alpine-sima:dev
+    docker run --net music_stack --name=sima -d alpine-sima:latest
 
 5. (Optional) Run ympd
 
-    docker run -p 8080:8080 --net music_stack --name=ympd -d alpine-ympd:dev
+    docker run -p 8080:8080 --net music_stack --name=ympd -d alpine-ympd:latest
 
 ## Passwords, users and credentials
 
