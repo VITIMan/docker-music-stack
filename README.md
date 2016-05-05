@@ -35,7 +35,7 @@ Clone this repo. **Edit docker-compose.yml** and add your host volumes for your 
 
 1. Create a bridge network
 
-    docker network create --name music_stack
+    docker network create -d bridge music_stack
 
 2. Run Icecast
 
