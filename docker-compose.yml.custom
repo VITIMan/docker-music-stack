@@ -3,7 +3,7 @@ version: '2'
 services:
   icecast:
     build:
-      context: icecast/
+      context: icecast/latest/
     image: alpine-icecast:custom
     ports:
       - "8000:8000"
@@ -13,22 +13,22 @@ services:
   # Add your host volumen in path/to/... or add your own volume below
   mpd:
     build:
-      context: mpd/
+      context: mpd/latest/
     image: alpine-mpd:custom
     ports:
-      - "6600:6600"
+      - "6601:6600"
     depends_on:
       - icecast
     networks:
       - music_stack
     volumes:
-      - /path/to/mpd_music:/var/lib/mpd/music
-      - /path/to/mpd_playlists:/var/lib/mpd/playlists
-      - /path/to/mpd_database:/var/lib/mpd/database
+      - /home/viti/music:/var/lib/mpd/music
+      # - /path/to/mpd_playlists:/var/lib/mpd/playlists
+      # - /path/to/mpd_database:/var/lib/mpd/database
 
   sima:
     build:
-      context: sima/
+      context: sima/latest/
     image: alpine-sima:custom
     depends_on:
       - mpd
@@ -37,10 +37,19 @@ services:
 
   ympd:
     build:
-      context: ympd/
+      context: ympd/latest/
     image: alpine-ympd:custom
     ports:
       - "8080:8080"
+    depends_on:
+      - mpd
+    networks:
+      - music_stack
+
+  mpdas:
+    build:
+      context: mpdas/latest/
+    image: alpine-mpdas:custom
     depends_on:
       - mpd
     networks:

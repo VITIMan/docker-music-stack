@@ -38,6 +38,15 @@ services:
     networks:
       - music_stack
 
+  mpdas:
+    build:
+      context: mpdas/latest/
+    image: alpine-mpdas:custom
+    depends_on:
+      - mpd
+    networks:
+      - music_stack
+
 networks:
   music_stack:
     driver: bridge

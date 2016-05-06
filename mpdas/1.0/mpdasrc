@@ -1,0 +1,4 @@
+username = LASTFM_USER
+password = MD5_PASSWORD_HASHED
+host = mpd
+port = 6600
