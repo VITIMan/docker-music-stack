@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM library/alpine:3.10.1
 MAINTAINER @VITIMan 
 
 # docker run -p 8080:8080 --net music_stack --name=ympd -d alpine-ympd:dev

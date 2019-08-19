@@ -1,14 +1,15 @@
-FROM alpine:3.3
+FROM library/alpine:3.10.1
 MAINTAINER @VITIMan https://github.com/VITIMan 
 
-ENV MPD_VERSION 0.19.12-r0
-ENV MPC_VERSION 0.27-r0
+ENV MPD_VERSION 0.21.13-r0
+ENV MPC_VERSION 0.32-r0
 
 # https://docs.docker.com/engine/reference/builder/#arg
 ARG user=mpd
 ARG group=audio
 
-RUN apk -q update \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+    && apk -q update \
     && apk -q --no-progress add mpd="$MPD_VERSION" \
     && apk -q --no-progress add mpc="$MPC_VERSION" \
     && rm -rf /var/cache/apk/*
