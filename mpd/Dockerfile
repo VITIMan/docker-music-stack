@@ -1,8 +1,8 @@
-FROM alpine:3.3
-MAINTAINER @VITIMan https://github.com/VITIMan 
+FROM alpine:3.17
+LABEL Author: @VITIMan https://github.com/VITIMan 
 
-ENV MPD_VERSION 0.19.12-r0
-ENV MPC_VERSION 0.27-r0
+ENV MPD_VERSION 0.23.10-r3
+ENV MPC_VERSION 0.34-r0
 
 # https://docs.docker.com/engine/reference/builder/#arg
 ARG user=mpd
