@@ -1,5 +1,5 @@
-FROM alpine:3.3
-MAINTAINER @VITIMan 
+FROM alpine:3.17
+LABEL Author: @VITIMan 
 
 # docker run -p 8080:8080 --net music_stack --name=ympd -d alpine-ympd:dev
 
@@ -20,9 +20,9 @@ RUN apk -q update \
 
 RUN curl -fsSlL https://github.com/notandy/ympd/archive/v$YMPD_VERSION.tar.gz -o ympd.tar.gz \
     && tar -xzf ympd.tar.gz \
-    && mkdir ympd-$YMPD_VERSION/build
+    && mkdir /ympd-$YMPD_VERSION/build
 
-WORKDIR ympd-$YMPD_VERSION/build
+WORKDIR /ympd-$YMPD_VERSION/build
 
 RUN cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_INSTALL_PREFIX:PATH=/usr \
     && make \
